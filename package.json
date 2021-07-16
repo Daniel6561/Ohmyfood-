@@ -1,0 +1,11 @@
+{
+  "name": "ohmyfood",
+  "version": "1.0.0",
+  "description": "mise en place de sass pour concevoir un site maintenable pour Ohmyfood",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./style/sass/main.scss:./style/style.css --style compressed"
+  },
+  "author": "Daniel",
+  "license": "ISC"
+}
