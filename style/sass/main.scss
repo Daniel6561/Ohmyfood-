@@ -10,7 +10,7 @@
 }
 /* Les Variables */
 $title_police: 'Shrikhand',cursive;
-$id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiare:#99E2D0);
+$id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiaire:#99E2D0);
 
 /*function et mixins*/
 @mixin police_de_titre
@@ -22,29 +22,108 @@ $id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiare:#99E2D0);
 
 @mixin conteneur_automatique
 {padding:5%;}
+@mixin visited_link
+{text-decoration:none;
+	color:black;}
+@mixin flex_horiz_center
+{
+	display:flex;
+	align-items:center;
+	justify-content:center;}
+	
+@mixin btn_primaire($color_txt)
+{
+	&__btn
+	{
+		margin:auto;
+		background-color:lighten(map-get($id_graph_colors,primaire),10%);
+		height:50px;
+		width:58%;
+		border-radius:50px;
+		@include flex_horiz_center;
+		position:relative;
+		top:25px;
+		box-shadow:0px 6px 6px #d2d2d2;
+		&__texte
+		{
+			color:$color_txt;
+		}
+	}
+}
 
 body{
     font-family: 'Roboto';
+	width:100%;
+	margin:auto;
 }
-h1{@include police_de_titre();}
 
 header
 {
     width:100%;
     position:relative;
-    text-align:center;
-    border-bottom:lighten(map-get($id_graph_colors,primaire),30%) 2px solid;
-    & logo
+    border-bottom:/*lighten(map-get($id_graph_colors,primaire),30%)*/ #cfcfcf 2px solid;
+	height:63px;
+	@include flex_horiz_center;
+	
+    & .logo
     {
-        vertical-align: middle;
     }
+	& .retour
+	{
+		display:inline-block;
+		vertical-align:middle;
+		position:absolute;
+		z-index:1;
+		left:1em;
+		height:100%;
+		@include flex_horiz_center;
+		@include visited_link;
+	}
 }
 #localisation
 {
-    @include debug_rapid();
-    width:100%;
+    width:100%; height: 42px;
     position:relative;
-    text-align:center;
-    display:flex;
-    background-color: lighten(map-get($id_graph_colors,primaire),35%);
+	@include flex_horiz_center;
+    background-color: /*lighten(map-get($id_graph_colors,primaire),35%)*/ #eaeaea;
+	font-size:1.4em;
+	font-weight:bold;
+	& span{
+	position:relative;
+	right:.6em;}
+}
+#courte_presentation
+{
+	& .presentation
+	{
+		@include conteneur_automatique;
+		background-color:/*lighten(map-get($id_graph_colors,primaire),38%)*/ #f6f6f6;
+		text-align:center;
+		height:287px;
+		&__titre
+		{
+			margin-top:10px;
+			text-align:center;
+			font-weight:bold;
+			font-size:2em;
+		}
+		& p
+		{
+			text-align:center;
+			font-size:1.2em;
+		}
+		position:relative;
+		@include btn_primaire(#fff);
+	}
+	
+	& .fonctionnement
+	{
+		@include conteneur_automatique;
+		&__title
+		{
+			margin-top:10px;
+			font-weight:bold;
+			font-size:2em;
+		}
+	}
 }
