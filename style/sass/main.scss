@@ -1,0 +1,50 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+
+/* Les polices */
+@font-face {
+    font-family: 'Roboto';
+    src: url('./Police/Roboto-Regular.ttf') format('truetype'),
+    url('./Police/roboto-regular-webfont.woff2') format('woff2'),
+    url('./Police/roboto-regular-webfont.woff') format('woff');
+}
+/* Les Variables */
+$title_police: 'Shrikhand',cursive;
+$id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiare:#99E2D0);
+
+/*function et mixins*/
+@mixin police_de_titre
+{  font-family: $title_police;}
+@mixin debug_rapid{
+    border:solid black 1px;
+    *{border: solid black 1px;}
+}
+
+@mixin conteneur_automatique
+{padding:5%;}
+
+body{
+    font-family: 'Roboto';
+}
+h1{@include police_de_titre();}
+
+header
+{
+    width:100%;
+    position:relative;
+    text-align:center;
+    border-bottom:lighten(map-get($id_graph_colors,primaire),30%) 2px solid;
+    & logo
+    {
+        vertical-align: middle;
+    }
+}
+#localisation
+{
+    @include debug_rapid();
+    width:100%;
+    position:relative;
+    text-align:center;
+    display:flex;
+    background-color: lighten(map-get($id_graph_colors,primaire),35%);
+}
