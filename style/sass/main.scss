@@ -11,6 +11,7 @@
 /* Les Variables */
 $title_police: 'Shrikhand',cursive;
 $id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiaire:#99E2D0);
+$img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',2:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',3:'stil-u2Lp8tXIcjw-unsplash.jpg',4:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
 
 /*Listes*/
@@ -20,6 +21,12 @@ $etats_blocs: focus hover active;
 /*function et mixins*/
 @mixin police_de_titre
 {  font-family: $title_police;}
+@mixin titre_second
+{	
+	margin-top:10px;
+	font-weight:bold;
+	font-size:2em;
+}
 @mixin debug_rapid{
     border:solid black 1px;
     *{border: solid black 1px;}
@@ -127,6 +134,36 @@ $etats_blocs: focus hover active;
 	}
 }
 
+@mixin restau_page_daccueil($recueil_img)
+{
+	
+	&__nouveau
+	{
+		position:absolute;
+		right:12px; top:12px;
+		height: 30px;
+		background-color: map-get($id_graph_colors, tertiaire);
+		font-weight:bold;
+		color:darken(map-get($id_graph_colors,tertiaire),25%);
+		vertical-align:middle;
+	}
+	&__description
+	{
+		height:78px;
+		position: absolute;
+		bottom:0px;
+		width:100%;
+		background-color:#fff;
+	}
+	@each $key, $value in $recueil_img
+	{
+		&__#{$key}
+		{
+			background: url('./../assets/images/restaurants/'+#{$value}) no-repeat center/150%;
+		}
+	}
+}
+
 body{
     font-family: 'Roboto';
 	width:100%;
@@ -178,10 +215,8 @@ header
 		max-height:287px;
 		&__titre
 		{
-			margin-top:10px;
+			@include titre_second;
 			text-align:center;
-			font-weight:bold;
-			font-size:2em;
 		}
 		& p
 		{
@@ -197,9 +232,7 @@ header
 		@include conteneur_automatique;
 		&__title
 		{
-			margin-top:10px;
-			font-weight:bold;
-			font-size:2em;
+			@include titre_second;
 		}
 		&__option
 		{
@@ -214,5 +247,31 @@ header
 			@include option_des_fonctionnement($nbr_option_fonctionnement);
 			
 		}
+	}
+}
+.restaurants
+{
+	@include debug_rapid();
+	background-color:/*lighten(map-get($id_graph_colors,primaire),38%)*/ #f6f6f6;
+	@include conteneur_automatique();
+	&__title
+	{
+		@include titre_second();
+	}
+	& a
+	{	height:251px;
+		max-width:336px;
+		width:100%;
+		display:inline-block;
+		position:relative;
+		margin-bottom:18px;
+		border-radius:15px;
+		overflow:hidden;
+
+	}
+	&__menu
+	{
+		@include restau_page_daccueil($img_des_restau);
+		/* A modifier */	
 	}
 }
