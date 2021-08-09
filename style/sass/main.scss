@@ -11,6 +11,7 @@
 /* Les Variables */
 $title_police: 'Shrikhand',cursive;
 $id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiaire:#99E2D0);
+$color_descript:#fff;
 $color_btn_heart:lighten(map-get($id_graph_colors,primaire),10%);
 $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',2:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',3:'stil-u2Lp8tXIcjw-unsplash.jpg',4:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
@@ -157,7 +158,7 @@ $etats_blocs: focus hover active;
 		position: absolute;
 		bottom:0px;
 		width:100%;
-		background-color:#fff;
+		background-color:$color_descript;
 		display:flex;
 		justify-content: space-between;
 		color:black;
@@ -166,12 +167,25 @@ $etats_blocs: focus hover active;
 			width:70px;
 			height:100%;
 			@include flex_horiz_center();
+			position:relative;
 			& .fa-heart
 			{
 				font-size:1.8em;
+				position:absolute;
+			}
+			
+			& .fas
+			{
+				color: $color_btn_heart;
+				display:inline-block;
+			}
+			& .far
+			{
+				z-index:2;
+				background-color: $color_descript;
 				&:#{nth($etats_blocs,2)}
 				{
-					background-color: $color_btn_heart;
+					display:none;
 				}
 			}
 		}
