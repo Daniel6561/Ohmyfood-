@@ -334,3 +334,16 @@ header
 		@include restau_page_daccueil($img_des_restau);
 	}
 }
+
+footer
+{
+	background-color: black;
+	@include debug_rapid();
+	@include conteneur_automatique();
+	.footer__title
+	{
+		font-size: 1.2em;
+		color:#fff;
+		@include police_de_titre();
+	}
+}
