@@ -30,8 +30,8 @@ $etats_blocs: focus hover active;
 	font-size:2em;
 }
 @mixin debug_rapid{
-    border:solid black 1px;
-    *{border: solid black 1px;}
+    border:solid white 1px;
+    *{border: solid white 1px;}
 }
 
 @mixin conteneur_automatique
@@ -338,12 +338,38 @@ header
 footer
 {
 	background-color: black;
-	@include debug_rapid();
 	@include conteneur_automatique();
 	.footer__title
 	{
-		font-size: 1.2em;
+		font-size: 1em;
 		color:#fff;
 		@include police_de_titre();
+		font-weight:normal;
+	}
+	.footer__nav
+	{
+		& ul
+		{
+			padding-left: 0px;
+			margin-bottom: 0px;
+			& li
+			{
+				list-style-type: none;
+				margin-left: 0px;
+				margin-bottom:14px;
+				& i
+				{
+					color:#fff;
+					margin-right: 1%;
+					font-size: 0.97em;
+				}
+				& a
+				{
+					text-decoration: none;
+					font-size: 0.98em;
+					color:#fff;
+				}
+			}
+		}
 	}
 }
