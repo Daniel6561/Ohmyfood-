@@ -30,8 +30,8 @@ $etats_blocs: focus hover active;
 	font-size:2em;
 }
 @mixin debug_rapid{
-    border:solid white 1px;
-    *{border: solid white 1px;}
+    border:solid black 1px;
+    *{border: solid black 1px;}
 }
 
 @mixin conteneur_automatique
@@ -332,6 +332,48 @@ header
 	&__menu
 	{
 		@include restau_page_daccueil($img_des_restau);
+	}
+}
+
+/*Volet des menus*/
+.page__center
+{
+	& .bannière
+	{
+		height: 254px;
+	}
+	& .menu
+	{
+		@include conteneur_automatique();
+		border-radius: 35px;
+		position:relative;
+		top:-35px;
+		overflow: hidden;
+		background-color: $color_descript;
+		&__entête
+		{
+			width:100%;
+			height:102px;
+			display:flex;
+			justify-content: space-between;
+			align-items:center;
+			&__titre
+			{
+				@include police_de_titre();
+			}
+			& span
+			{
+				width:70px;
+				height:100%;
+				@include flex_horiz_center();
+				position:relative;
+				& .far
+				{
+					position: relative;
+					font-size:1.8em;
+				}
+			}
+		}
 	}
 }
 
