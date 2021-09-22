@@ -11,7 +11,8 @@
 /* Les Variables */
 $title_police: 'Shrikhand',cursive;
 $id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiaire:#99E2D0);
-$color_descript:#fff;
+$color_descript:#f6f6f6;//Ici la couleur de la table de menu
+$color_repas:#fff;
 $color_btn_heart:lighten(map-get($id_graph_colors,primaire),10%);
 $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',2:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',3:'stil-u2Lp8tXIcjw-unsplash.jpg',4:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
@@ -340,6 +341,7 @@ header
 /*Volet des menus*/
 .page__center
 {
+	background-color: $color_descript;
 	& .bannière
 	{
 		height: 254px;
@@ -401,12 +403,14 @@ header
 				}
 				& li
 				{
-					@include debug_rapid;
 					list-style-type:none;
 					width:100%;
 					height:$haut-repas;
 					margin-bottom:14px;
 					border-radius:12px;
+					overflow:hidden;
+					background-color:$color-repas;
+					box-shadow:0px 8px 8px #ebebeb;
 				}
 				
 				/* A modifier dès l'application à <li> la class .repas */
@@ -417,13 +421,30 @@ header
 					justify-content:space-between;
 					&__description 
 					{
+						display:flex;
+						flex-direction:column;
+						justify-content:space-between;
 						position:relative;
-						& p{display:inline;}
+						padding:0px;
+						padding-left:3%;
+						marging-top:16px 0 16px 0;
+						font-size:0.9em;
+						& p
+						{
+							display:inline;
+							margin-bottom:0px;
+						}
+						height:100%;
 						width:100%;
+						&__titre
+						{
+							margin:0px;
+						}
 						&__prix
 						{
 							position:absolute;
 							right:24px;
+							bottom:0px;
 							font-weight:bold;
 						}
 					}
@@ -434,12 +455,16 @@ header
 						background-color:map-get($id_graph_colors, tertiaire);
 						@include flex_horiz_center;
 						& .fas
-						{color:#FFF;}
+						{
+							color:$color-repas;
+							font-size:1.2em;
+						}
 					}
 				}
 			}
 			$nbr:$nbr+1;
 		}
+		@include btn_primaire(#fff);
 	}
 }
 
