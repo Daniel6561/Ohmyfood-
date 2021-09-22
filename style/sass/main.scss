@@ -15,6 +15,7 @@ $color_descript:#fff;
 $color_btn_heart:lighten(map-get($id_graph_colors,primaire),10%);
 $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',2:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',3:'stil-u2Lp8tXIcjw-unsplash.jpg',4:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
+$haut-repas:70px; //Ici la hauteur des blocs de repas dans chaque menus
 
 /*Listes*/
 $liste_fonctionnement:1 2 3;
@@ -375,20 +376,69 @@ header
 				}
 			}
 		}
-		@include debug_rapid();
-		/* ------------- Je pense qu'il faudra créer une boucle tant que ici -------------- */
-		&__#{nth($type_menus,1)}
+		
+		$nbr:1;
+		@while $nbr<=3
 		{
-			&__titre
+			&__#{nth($type_menus,$nbr)}
 			{
-				text-transform: uppercase;
-				&__deco
+				&__titre
 				{
-					width: 40px;
-					height:2px;
-					background-color:map-get($id_graph_colors, secondaire);
+					display:flex;
+					flex-direction:column;
+					text-transform: uppercase;
+					font-size:1em;
+					&__deco
+					{
+						width: 40px;
+						height:2px;
+						background-color:map-get($id_graph_colors, tertiaire);
+					}
+				}
+				& ul
+				{
+					padding-left:0px;
+				}
+				& li
+				{
+					@include debug_rapid;
+					list-style-type:none;
+					width:100%;
+					height:$haut-repas;
+					margin-bottom:14px;
+					border-radius:12px;
+				}
+				
+				/* A modifier dès l'application à <li> la class .repas */
+				&__repas
+				{
+					display:flex;
+					align-items:center;
+					justify-content:space-between;
+					&__description 
+					{
+						position:relative;
+						& p{display:inline;}
+						width:100%;
+						&__prix
+						{
+							position:absolute;
+							right:24px;
+							font-weight:bold;
+						}
+					}
+					&__valider
+					{
+						height:$haut-repas;
+						width:60px;
+						background-color:map-get($id_graph_colors, tertiaire);
+						@include flex_horiz_center;
+						& .fas
+						{color:#FFF;}
+					}
 				}
 			}
+			$nbr:$nbr+1;
 		}
 	}
 }
