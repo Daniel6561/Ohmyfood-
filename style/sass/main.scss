@@ -19,6 +19,7 @@ $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionne
 /*Listes*/
 $liste_fonctionnement:1 2 3;
 $etats_blocs: focus hover active;
+$type_menus: entrées plats desserts;
 
 /*function et mixins*/
 @mixin police_de_titre
@@ -371,6 +372,21 @@ header
 				{
 					position: relative;
 					font-size:1.8em;
+				}
+			}
+		}
+		@include debug_rapid();
+		/* ------------- Je pense qu'il faudra créer une boucle tant que ici -------------- */
+		&__#{nth($type_menus,1)}
+		{
+			&__titre
+			{
+				text-transform: uppercase;
+				&__deco
+				{
+					width: 40px;
+					height:2px;
+					background-color:map-get($id_graph_colors, secondaire);
 				}
 			}
 		}
