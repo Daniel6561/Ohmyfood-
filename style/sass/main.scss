@@ -75,6 +75,14 @@ $type_menus: entrées plats desserts;
 					{
 						transform:translateX(-#{$larg_validation});
 					}
+					&__titre
+					{
+						width:65%;
+					}
+					& p
+					{
+						width:65%;
+					}
 				}
 				&__valider
 				{
@@ -432,55 +440,57 @@ header
 				{
 					padding-left:0px;
 				}
-				& li
+				
+				&__repas
 				{
 					list-style-type:none;
 					width:100%;
 					height:$haut-repas;
 					margin-bottom:14px;
 					border-radius:12px;
-					overflow:hidden;
 					background-color:$color-repas;
 					box-shadow:0px 8px 8px #ebebeb;
 					position:relative;
-				}
-				
-				/* A modifier dès l'application à <li> la class .repas */
-				&__repas
-				{
+					display:inline-block;
 					display:flex;
 					align-items:center;
 					justify-content:space-between;
-					width:100%;
 					@include ajout_de_plat(nth($etats_blocs,1));
 					@include ajout_de_plat(nth($etats_blocs,2));
 					@include ajout_de_plat(nth($etats_blocs,3));
+					overflow:hidden;
 					&__description 
 					{
 						display:flex;
 						flex-direction:column;
 						justify-content:space-between;
-						padding:0px;
-						padding-left:3%;
-						marging-top:16px 0 16px 0;
 						font-size:0.9em;
+						overflow:hidden;
 						& p
 						{
-							display:inline;
-							margin-bottom:0px;
 							width:100%;
+							height:1.2em;
+							margin:0px;
+							margin-bottom:3%;
+							margin-left:3%;
+							overflow:hidden;
 						}
 						height:100%;
 						width:100%;
 						&__titre
 						{
 							margin:0px;
+							margin-top:3%;
+							margin-left:3%;
+							width:100%;
+							height:1.2em;
+							overflow:hidden;
 						}
 						&__prix
 						{
 							position:absolute;
 							right:24px;
-							bottom:0.8em;
+							bottom:9%;
 							font-weight:bold;
 							display:inline-block;
 							transform:translateX(0px);
