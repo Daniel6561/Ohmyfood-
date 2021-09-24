@@ -12,7 +12,7 @@
 $title_police: 'Shrikhand',cursive;
 $id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiaire:#99E2D0);
 $color_descript:#f6f6f6;//Ici la couleur de la table de menu
-$color_repas:#fff;
+$color_repas:#fff;$larg_validation:60px;
 $color_btn_heart:lighten(map-get($id_graph_colors,primaire),10%);
 $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',4:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',2:'stil-u2Lp8tXIcjw-unsplash.jpg',3:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
@@ -55,6 +55,37 @@ $type_menus: entrées plats desserts;
 		& .fas
 		{
 			color: map-get($id_graph_colors, primaire);
+		}
+	}
+}
+
+@mixin ajout_de_plat ($etat)
+{
+	&:#{$etat}
+	{
+		cursor:pointer;
+		$nbr:1;
+		@while $nbr<=3
+		{
+			& .menu__#{nth($type_menus,$nbr)}__repas
+			{
+				&__description
+				{
+					&__prix
+					{
+						transform:translateX(-#{$larg_validation});
+					}
+				}
+				&__valider
+				{
+					transform:translateX(-#{$larg_validation});
+					& .fas
+					{
+						transform:rotate(360deg);
+					}
+				}
+			}
+			$nbr:$nbr+1;
 		}
 	}
 }
@@ -411,6 +442,7 @@ header
 					overflow:hidden;
 					background-color:$color-repas;
 					box-shadow:0px 8px 8px #ebebeb;
+					position:relative;
 				}
 				
 				/* A modifier dès l'application à <li> la class .repas */
@@ -419,12 +451,15 @@ header
 					display:flex;
 					align-items:center;
 					justify-content:space-between;
+					width:100%;
+					@include ajout_de_plat(nth($etats_blocs,1));
+					@include ajout_de_plat(nth($etats_blocs,2));
+					@include ajout_de_plat(nth($etats_blocs,3));
 					&__description 
 					{
 						display:flex;
 						flex-direction:column;
 						justify-content:space-between;
-						position:relative;
 						padding:0px;
 						padding-left:3%;
 						marging-top:16px 0 16px 0;
@@ -433,6 +468,7 @@ header
 						{
 							display:inline;
 							margin-bottom:0px;
+							width:100%;
 						}
 						height:100%;
 						width:100%;
@@ -444,20 +480,31 @@ header
 						{
 							position:absolute;
 							right:24px;
-							bottom:0px;
+							bottom:0.8em;
 							font-weight:bold;
+							display:inline-block;
+							transform:translateX(0px);
+							transition:all 250ms ease-in-out;
 						}
+						
 					}
 					&__valider
 					{
+						position:relative;
+						right:-#{$larg_validation};
 						height:$haut-repas;
-						width:60px;
+						width:$larg_validation;
+						display:inline-block;
+						transform:translateX(0px);
+						transition:all 250ms ease-in-out;
 						background-color:map-get($id_graph_colors, tertiaire);
 						@include flex_horiz_center;
 						& .fas
 						{
 							color:$color-repas;
 							font-size:1.2em;
+							transform:rotate(180deg);
+							transition: all 500ms;
 						}
 					}
 				}
