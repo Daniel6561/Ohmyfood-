@@ -247,9 +247,11 @@ $type_menus: entrées plats desserts;
 			{
 				z-index:2;
 				background-color: $color_descript;
+				opacity:1;
+				transition:opacity 250ms;
 				&:#{nth($etats_blocs,2)}
 				{
-					display:none;
+					opacity:0;
 				}
 			}
 		}
@@ -289,7 +291,7 @@ $type_menus: entrées plats desserts;
 	0%
 	{
 		opacity:0;
-		transform:translateY(-50%);
+		transform:translateY(50%);
 	}
 	50%
 	{
