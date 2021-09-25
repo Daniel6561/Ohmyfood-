@@ -1,0 +1,154 @@
+.loading_page
+{	
+	position:fixed;
+	top:0; right:0; left:0; bottom:0;
+	background-color:$color_repas;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	& span
+	{
+		margin-top: 50px;
+		padding:0;
+		display:inline-block;
+		font-size:200%;
+		color:$color_btn_heart;
+		animation:rotation_spinner $durée_loading infinite;
+		& fa-spinner
+		{
+			margin:0;
+		}
+	}
+	animation: loading $durée_loading;
+	animation-fill-mode:forwards;
+}
+
+
+/* -Les animations- */
+@keyframes apparition_progressive
+{
+	0%
+	{
+		opacity:0;
+		transform:translateY(50%);
+	}
+	50%
+	{
+		opacity:1;
+	}
+	100%
+	{
+		opacity:1;
+		transform:translateY(0%);
+	}
+}
+
+@keyframes loading
+{
+	0%
+	{
+		opacity:1;
+		z-index:10;
+		transform:scale(1);
+	}
+	50%
+	{
+		opacity:.91;
+	}
+	95%
+	{
+		opacity:.85;
+	}
+	100%
+	{
+		opacity:.3;
+		z-index:-3;
+		display:none;
+		transform:scale(2.5);
+		display:none;
+	}
+}
+
+@keyframes rotation_spinner
+{
+	0%
+	{
+		opacity:1;
+		transform:rotate(0turn);
+	}
+	50%
+	{
+		transform:rotate(3turn);
+	}
+	80%
+	{
+		transform:rotate(3.8turn);
+	}
+	100%
+	{
+		opacity:.3;
+		transform:rotate(4turn);
+	}
+}
+
+
+
+@mixin option_des_fonctionnement ($nbr_option)
+{$nbr:1;
+	@while $nbr<=$nbr_option
+	{
+		&__#{$nbr}
+		{
+			list-style-type: none;
+			width:100%;
+			max-width:322px;
+			height:74px;
+			margin-top:12px;
+			margin-bottom: 12px;
+			border-radius: 24px;
+			font-size:1.2em;
+			background-color: #f6f6f6;
+			box-shadow:0px 8px 8px #eaeaea;
+			& a
+			{
+				@include flex_horiz_center();
+				position:relative;
+				align-content:space-between;
+				width:100%;
+				height:100%;
+				text-decoration: none;
+				color: black;
+				font-weight:bold;
+			}
+			& .num
+			{
+				width:24px;
+				height:24px;
+				border-radius:50%;
+				display:flex;
+				justify-content: center;
+				align-items: center;
+				color:#fff;
+				position:absolute;
+				font-weight:normal;
+				font-size: .9em;
+				left: -4%;
+				background-color: map-get($id_graph_colors, primaire );
+			}
+			& .fas
+			{
+				position: relative;
+				left:-20px;
+				font-size:1.1em;
+				color: lighten(#000000, 40%);
+			}
+
+			//Les différents états des options
+			@include etat_dynamique_option_fonctionnement(nth($etats_blocs,1));
+			@include etat_dynamique_option_fonctionnement(nth($etats_blocs,2));
+			@include etat_dynamique_option_fonctionnement(nth($etats_blocs,3));
+		}
+		$nbr:$nbr+1;
+	}
+}

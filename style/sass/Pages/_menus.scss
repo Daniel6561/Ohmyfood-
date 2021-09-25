@@ -1,0 +1,186 @@
+/*Volet des menus*/
+.page__center
+{
+	background-color: $color_descript;
+	& .bannière
+	{
+		height: 254px;
+	}
+	& .menu
+	{
+		@include conteneur_automatique();
+		border-radius: 35px;
+		position:relative;
+		top:-35px;
+		overflow: hidden;
+		background-color: $color_descript;
+		@include apparition_menus;
+		&__entête
+		{
+			width:100%;
+			height:102px;
+			display:flex;
+			justify-content: space-between;
+			align-items:center;
+			&__titre
+			{
+				@include police_de_titre();
+			}
+			& span
+			{
+				width:70px;
+				height:100%;
+				@include flex_horiz_center();
+				position:relative;
+				& .far
+				{
+					position: relative;
+					font-size:1.8em;
+				}
+				@include flex_horiz_center();
+				& .fa-heart
+				{
+					font-size:1.8em;
+					position:absolute;
+				}
+				
+				& .fas
+				{
+					color: $color_btn_heart;
+					display:inline-block;
+				}
+				& .far
+				{
+					z-index:2;
+					background-color: $color_descript;
+					opacity:1;
+					transition:opacity 250ms;
+					&:#{nth($etats_blocs,2)}
+					{
+						opacity:0;
+					}
+				}
+			}
+		}
+		
+		$nbr:1;
+		@while $nbr<=3
+		{
+			&__#{nth($type_menus,$nbr)}
+			{
+				&__titre
+				{
+					display:flex;
+					flex-direction:column;
+					text-transform: uppercase;
+					font-size:1em;
+					&__deco
+					{
+						width: 40px;
+						height:2px;
+						background-color:map-get($id_graph_colors, tertiaire);
+					}
+				}
+				& ul
+				{
+					padding-left:0px;
+				}
+				
+				&__repas
+				{
+					list-style-type:none;
+					width:100%;
+					height:$haut-repas;
+					margin-bottom:14px;
+					border-radius:12px;
+					background-color:darken($color_repas,4%);
+					box-shadow:0px 8px 8px #ebebeb;
+					position:relative;
+					display:inline-block;
+					display:flex;
+					align-items:center;
+					justify-content:space-between;
+					overflow:hidden;
+					opacity:1;
+					z-index:1;
+					@include ajout_de_plat(nth($etats_blocs,1));
+					@include ajout_de_plat(nth($etats_blocs,2));
+					@include ajout_de_plat(nth($etats_blocs,3));
+					/* -Ajout d'élément en arrière plan pour optimiser l'annimation d'éclaicirssement au clic ou survole- */
+					&::after
+					{
+						position:absolute;
+						top:0; bottom:0; left:0; right:0;
+						content:"";
+						opacity:0;
+						transition:opacity 250ms;
+						background-color:$color_repas;
+						color:$color_repas;
+						z-index:-1;
+					}
+					&__description 
+					{
+						display:flex;
+						flex-direction:column;
+						justify-content:space-between;
+						font-size:0.9em;
+						overflow:hidden;
+						& p
+						{
+							width:100%;
+							height:1.2em;
+							margin:0px;
+							margin-bottom:3%;
+							margin-left:3%;
+							overflow:hidden;
+						}
+						height:100%;
+						width:100%;
+						&__titre
+						{
+							margin:0px;
+							margin-top:3%;
+							margin-left:3%;
+							width:100%;
+							height:1.2em;
+							overflow:hidden;
+						}
+						&__prix
+						{
+							position:absolute;
+							right:24px;
+							bottom:9%;
+							font-weight:bold;
+							display:inline-block;
+							transform:translateX(0px);
+							transition:all 250ms ease-in-out;
+						}
+						
+					}
+					&__valider
+					{
+						position:relative;
+						right:-#{$larg_validation};
+						height:$haut-repas;
+						width:$larg_validation;
+						display:inline-block;
+						transform:translateX(0px);
+						transition:all 250ms ease-in-out;
+						background-color:map-get($id_graph_colors, tertiaire);
+						@include flex_horiz_center;
+						& .fas
+						{
+							color:$color_repas;
+							font-size:1.2em;
+							transform:rotate(180deg);
+							transition: all 500ms;
+						}
+					}
+				}
+				margin-bottom:40px;
+			}
+			$nbr:$nbr+1;
+		}
+		@include btn_primaire(#fff);
+	}
+}
