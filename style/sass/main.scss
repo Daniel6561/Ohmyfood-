@@ -18,7 +18,7 @@ $color_btn_heart:lighten(map-get($id_graph_colors,primaire),10%);
 $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',4:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',2:'stil-u2Lp8tXIcjw-unsplash.jpg',3:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
 $haut-repas:70px; //Ici la hauteur des blocs de repas dans chaque menus
-$durée_apparition:1000ms;//Indiquée en millisecondes
+$durée_apparition:1000ms; $durée_loading:3000ms;
 
 /*Listes*/
 $liste_fonctionnement:1 2 3;
@@ -304,10 +304,85 @@ $type_menus: entrées plats desserts;
 	}
 }
 
+@keyframes loading
+{
+	0%
+	{
+		opacity:1;
+		z-index:10;
+		transform:scale(1);
+	}
+	50%
+	{
+		opacity:.91;
+	}
+	95%
+	{
+		opacity:.85;
+	}
+	100%
+	{
+		opacity:.3;
+		z-index:-3;
+		display:none;
+		transform:scale(2.5);
+		display:none;
+	}
+}
+
+@keyframes rotation_spinner
+{
+	0%
+	{
+		opacity:1;
+		transform:rotate(0turn);
+	}
+	50%
+	{
+		transform:rotate(3turn);
+	}
+	80%
+	{
+		transform:rotate(3.8turn);
+	}
+	100%
+	{
+		opacity:.3;
+		transform:rotate(4turn);
+	}
+}
+
 body{
     font-family: 'Roboto';
 	width:100%;
 	margin:auto;
+	position:relative;
+}
+
+.loading_page
+{	
+	position:fixed;
+	top:0; right:0; left:0; bottom:0;
+	background-color:$color_repas;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	& span
+	{
+		margin-top: 50px;
+		padding:0;
+		display:inline-block;
+		font-size:200%;
+		color:$color_btn_heart;
+		animation:rotation_spinner $durée_loading infinite;
+		& fa-spinner
+		{
+			margin:0;
+		}
+	}
+	animation: loading $durée_loading;
+	animation-fill-mode:forwards;
 }
 
 header
@@ -458,6 +533,29 @@ header
 				{
 					position: relative;
 					font-size:1.8em;
+				}
+				@include flex_horiz_center();
+				& .fa-heart
+				{
+					font-size:1.8em;
+					position:absolute;
+				}
+				
+				& .fas
+				{
+					color: $color_btn_heart;
+					display:inline-block;
+				}
+				& .far
+				{
+					z-index:2;
+					background-color: $color_descript;
+					opacity:1;
+					transition:opacity 250ms;
+					&:#{nth($etats_blocs,2)}
+					{
+						opacity:0;
+					}
 				}
 			}
 		}
