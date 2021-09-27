@@ -50,7 +50,7 @@
 	{
 		opacity:1;
 		z-index:10;
-		transform:scale(1);
+		transform:scale($loading_scale_start);
 	}
 	50%
 	{
@@ -60,13 +60,17 @@
 	{
 		opacity:.85;
 	}
-	100%
+	99%
 	{
 		opacity:.3;
+	}
+	100%
+	{
+		opacity:0;
 		z-index:-3;
 		display:none;
-		transform:scale(2.5);
-		display:none;
+		visibility:hidden;
+		transform:scale($loading_scale_end);
 	}
 }
 
@@ -93,7 +97,6 @@
 }
 
 
-
 @mixin option_des_fonctionnement ($nbr_option)
 {$nbr:1;
 	@while $nbr<=$nbr_option
@@ -108,8 +111,12 @@
 			margin-bottom: 12px;
 			border-radius: 24px;
 			font-size:1.2em;
-			background-color: #f6f6f6;
-			box-shadow:0px 8px 8px #eaeaea;
+			@include mini-tel
+			{
+				font-size:1em;
+			}
+			background-color: darken($color_repas, 3.6%);
+			box-shadow:0px 8px 8px /*#eaeaea*/darken($color_repas, 8.1%);
 			& a
 			{
 				@include flex_horiz_center();
@@ -140,6 +147,11 @@
 			{
 				position: relative;
 				left:-20px;
+				@include mini-tel
+				{
+					font-size:1em;
+					left:-10px;
+				}
 				font-size:1.1em;
 				color: lighten(#000000, 40%);
 			}

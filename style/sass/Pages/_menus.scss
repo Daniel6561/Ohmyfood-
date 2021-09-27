@@ -15,6 +15,14 @@
 		overflow: hidden;
 		background-color: $color_descript;
 		@include apparition_menus;
+		@include ordi
+		{
+			display:flex;
+			justify-content:space-between;
+			width:auto;
+			height:auto;
+			align-content:space-between;
+		}
 		&__entête
 		{
 			width:100%;
@@ -22,6 +30,15 @@
 			display:flex;
 			justify-content: space-between;
 			align-items:center;
+			@include ordi
+			{
+				display:flex;
+				justify-content:space-between;
+				width:90%;
+				left:5%;
+				position:absolute;
+				top:0;
+			}
 			&__titre
 			{
 				@include police_de_titre();
@@ -68,6 +85,13 @@
 		{
 			&__#{nth($type_menus,$nbr)}
 			{
+			
+				@include ordi
+				{
+					width:30%;
+					margin-bottom:20px;
+					margin-top:10px;
+				}
 				&__titre
 				{
 					display:flex;
@@ -91,6 +115,10 @@
 					list-style-type:none;
 					width:100%;
 					height:$haut-repas;
+					@include mini-tel
+					{
+						height:#{$haut-repas*.8};
+					}
 					margin-bottom:14px;
 					border-radius:12px;
 					background-color:darken($color_repas,4%);
@@ -124,31 +152,46 @@
 						flex-direction:column;
 						justify-content:space-between;
 						font-size:0.9em;
-						overflow:hidden;
 						& p
 						{
-							width:100%;
-							height:1.2em;
+							width:auto;
 							margin:0px;
 							margin-bottom:3%;
 							margin-left:3%;
 							overflow:hidden;
+							white-space:nowrap;
+							text-overflow:ellipsis;
 						}
 						height:100%;
 						width:100%;
+						@include mini-tel
+						{
+							max-width:250px;
+							font-size:0.8em;
+							width:80%;
+						}
+						@include ordi
+						{
+							width:80%;
+						}
 						&__titre
 						{
 							margin:0px;
 							margin-top:3%;
 							margin-left:3%;
-							width:100%;
-							height:1.2em;
+							width:auto;
 							overflow:hidden;
+							white-space:nowrap;
+							text-overflow:ellipsis;
 						}
 						&__prix
 						{
 							position:absolute;
 							right:24px;
+							@include mini-tel
+							{
+								right:9px;
+							}
 							bottom:9%;
 							font-weight:bold;
 							display:inline-block;
@@ -181,6 +224,16 @@
 			}
 			$nbr:$nbr+1;
 		}
-		@include btn_primaire(#fff);
+		@include btn_primaire($color_repas);
+		&__btn
+		{
+			@include ordi
+			{
+				position:absolute;
+				bottom:-41px;
+				width:27%;
+				left:36.5%;
+			}
+		}
 	}
 }

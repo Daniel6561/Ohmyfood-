@@ -1,6 +1,7 @@
 /* Les Variables */
 $title_police: 'Shrikhand',cursive;
 $id_graph_colors:(primaire:#9356DC,secondaire:#FF79DA,tertiaire:#99E2D0);
+$break-responsive:(tablette:750px,tel-m:500px,min-tel:350px,pc:1000px);
 $color_repas:#fff;
 $color_descript:darken($color_repas,10%);//Ici la couleur de la table de menu
 $larg_validation:60px;
@@ -9,6 +10,9 @@ $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',4:'louis-hansel-sho
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
 $haut-repas:70px; //Ici la hauteur des blocs de repas dans chaque menus
 $durée_apparition:1000ms; $durée_loading:3000ms;
+$largeur_maximale:1050px;
+$loading_scale_start:1;
+$loading_scale_end:1.5;
 
 /*Listes*/
 $liste_fonctionnement:1 2 3;
@@ -24,14 +28,18 @@ $type_menus: entrées plats desserts;
 	margin-top:10px;
 	font-weight:bold;
 	font-size:2em;
+	@include mini-tel
+	{
+		font-size:1.8em;
+	}
 }
 @mixin debug_rapid{
     border:solid black 1px;
-    *{border: solid black 1px;}
+    *{border: solid white 1px;}
 }
 
 @mixin conteneur_automatique
-{padding:5%;}
+{padding:5%; }
 @mixin visited_link
 {text-decoration:none;
 	color:black;}
@@ -121,7 +129,8 @@ $type_menus: entrées plats desserts;
 		margin:auto;
 		background-color:$color_btn_heart;
 		height:50px;
-		width:58%;
+		width:90%;
+		max-width:300px;
 		border-radius:50px;
 		@include flex_horiz_center;
 		position:relative;
@@ -131,6 +140,10 @@ $type_menus: entrées plats desserts;
 		&__texte
 		{
 			color:$color_txt;
+		}
+		@include tablettes
+		{
+			width:85%;
 		}
 	}
 }
@@ -219,5 +232,35 @@ $type_menus: entrées plats desserts;
 		{
 			background: url('./../assets/images/restaurants/'+#{$value}) no-repeat center/150%;
 		}
+	}
+}
+
+/*-responsive pour les tablettes-*/
+@mixin tablettes
+{
+	@media all and (min-width:map-get($break-responsive,tablette))
+	{
+		@content;
+	}
+}
+@mixin tel-moy
+{
+	@media all and (max-width:map-get($break-responsive,tel-m))
+	{
+		@content;
+	}
+}
+@mixin mini-tel
+{
+	@media all and (max-width:map-get($break-responsive,min-tel))
+	{
+		@content;
+	}
+}
+@mixin ordi
+{
+	@media all and (min-width:map-get($break-responsive,pc)) and (orientation:landscape)
+	{
+		@content;
 	}
 }
