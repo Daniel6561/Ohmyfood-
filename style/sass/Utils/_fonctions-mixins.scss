@@ -5,7 +5,12 @@ $break-responsive:(tablette:750px,tel-m:500px,min-tel:350px,pc:1000px);
 $color_repas:#fff;
 $color_descript:darken($color_repas,10%);//Ici la couleur de la table de menu
 $larg_validation:60px;
-$color_btn_heart:lighten(map-get($id_graph_colors,primaire),10%);
+$color_btn_heart:linear-gradient(350deg, map-get($id_graph_colors,tertiaire) 0%, map-get($id_graph_colors,primaire) 0%, map-get($id_graph_colors,secondaire)100%);
+$color_btn_heart_survol:linear-gradient(350deg, map-get($id_graph_colors,tertiaire) 0%, map-get($id_graph_colors,primaire) 10%, map-get($id_graph_colors,secondaire)90%);
+
+/*rgb(blue(map-get($id_graph_colors,primaire)),red(map-get($id_graph_colors,secondaire)),green(map-get($id_graph_colors,tertiaire)));*/
+/*mix(map-get($id_graph_colors,primaire),map-get($id_graph_colors,secondaire),30%)lighten(map-get($id_graph_colors,primaire),10%)*/
+
 $img_des_restau:(1:'jay-wennington-N_Y88TWmGwA-unsplash.jpg',4:'louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg',2:'stil-u2Lp8tXIcjw-unsplash.jpg',3:'toa-heftiba-DQKerTsQwi0-unsplash.jpg');
 $nbr_option_fonctionnement:3;// Ici le nombre d'étapes expliquant le fonctionnement du site
 $haut-repas:70px; //Ici la hauteur des blocs de repas dans chaque menus
@@ -32,6 +37,13 @@ $type_menus: entrées plats desserts;
 	{
 		font-size:1.8em;
 	}
+}
+
+@mixin remplissage_coeur
+{
+	background: $color_btn_heart;
+	color:transparent;
+	-webkit-background-clip: text;
 }
 @mixin debug_rapid{
     border:solid black 1px;
@@ -127,7 +139,7 @@ $type_menus: entrées plats desserts;
 	&__btn
 	{
 		margin:auto;
-		background-color:$color_btn_heart;
+		background-image:$color_btn_heart;
 		height:50px;
 		width:90%;
 		max-width:300px;
@@ -140,6 +152,10 @@ $type_menus: entrées plats desserts;
 		&__texte
 		{
 			color:$color_txt;
+		}
+		&:#{nth($etats_blocs,2)}
+		{
+			background-image:$color_btn_heart_survol;
 		}
 		@include tablettes
 		{
@@ -190,8 +206,8 @@ $type_menus: entrées plats desserts;
 			
 			& .fas
 			{
-				color: $color_btn_heart;
 				display:inline-block;
+				@include remplissage_coeur;
 			}
 			& .far
 			{

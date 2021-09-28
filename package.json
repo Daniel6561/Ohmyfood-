@@ -1,5 +1,5 @@
 {
-  "name": "ohmyfood",
+  "name": "package.json",
   "version": "1.0.0",
   "description": "mise en place de sass pour concevoir un site maintenable pour Ohmyfood",
   "main": "index.js",
@@ -7,5 +7,9 @@
     "sass": "sass --watch ./style/sass/main.scss:./style/style.css --style compressed"
   },
   "author": "Daniel",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "jesugnondaniel@gmail.com"
+  }
 }

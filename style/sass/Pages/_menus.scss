@@ -59,16 +59,16 @@
 				{
 					font-size:1.8em;
 					position:absolute;
+					display:inline-block;
 				}
 				
 				& .fas
 				{
-					color: $color_btn_heart;
-					display:inline-block;
+					@include remplissage_coeur;
 				}
 				& .far
 				{
-					z-index:2;
+					z-index:1;
 					background-color: $color_descript;
 					opacity:1;
 					transition:opacity 250ms;
