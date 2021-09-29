@@ -13,7 +13,6 @@
 		padding:0;
 		display:inline-block;
 		font-size:200%;
-		color:$color_btn_heart;
 		animation:rotation_spinner $durée_loading infinite;
 		& fa-spinner
 		{
