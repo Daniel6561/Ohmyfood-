@@ -3,11 +3,11 @@ Troisième projet du parcours "Développeur web" chez OpenClassroom.
 L'objectif est d'intégrer la maquette d'un site de foodtech nommé "Ohmyfood" permettant la commande de repas en ligne (voir l'image en suivant les liens ci-dessous).
 
 ![maquette accueil ohmyfood](./assets/maquettes/accueil.png)
-et la page du menu d'un restaurant
+
 ![maquette menu ohmyfood](./assets/maquettes/"Menu - La palette du goût.png")
 
 
-### Visualiser le site ici [https://ohmyfood-danieldejesus.com/]
+### Visualiser le site ici [https://daniel6561.github.io/Ohmyfood-/]
 
 ## Technologies
 - Le développement devra se faire en CSS, sans JavaScript
